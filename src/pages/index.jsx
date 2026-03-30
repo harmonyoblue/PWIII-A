@@ -9,12 +9,10 @@ function App() {
 
   return (
     <>
-      <p>Mikail Alexandrovichy Bakunin</p>
-      <p>
-        <Link to="/about">Sobre</Link>
-        <br />
-        <Link to="/data">Dados</Link>
-      </p>
+      <p>Clique em "Sobre" para ver gente gostosa</p>
+      <Link to="/about">Sobre</Link>
+      <br />
+      <Link to="/data">Dados</Link>
     </>
   )
 }
