@@ -1,5 +1,6 @@
-import hotguys from "../assets/Bakunin_&_Marx_&_malcon_&_sankara.png"
-import hotgirls from "../assets/RosaLuxemburgo_&_AngelaDavis_&_LouiseMichel_&_TeresaClaramunt.png"
+import hotgirls from "../assets/hunter.jpg"
+import hotenbies from "../assets/yeule.jpg"
+import cc from "../assets/C.C._released_from_capsule.jpg"
 
 
 export default function About() {
@@ -7,16 +8,16 @@ export default function About() {
         <div>
             <h1>Sobre</h1>
             <p>
-                Mulheres e homens gostosos
+                Mulheres e nbs gostosos
             </p>
 
             <img
-                src={hotguys}
-                alt="Mikhail Alexandrovich Bakunin, Karl Marx, Malcon X, Thomás Sankara" />
+                src={hotgirls}
+                alt="hunter schafer" />
 
             <img
-                src={hotgirls}
-                alt="Rosa Luxemburgo, Angela Davis, Louise Michel, Teresa Claramunt" />
+                src={hotenbies}
+                alt="yeule" />
         </div>
     )
 }

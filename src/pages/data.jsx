@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { saveItems, getItems, removeItems } from "../lib/db.js"
+
 
 export default function Data() {
 
@@ -9,11 +11,31 @@ export default function Data() {
     // Guarda o valor atual do campo de texto.
     // O estado é inicializado como uma string vazia, pois o campo começa sem nenhum texto.
     const [texto, setTexto] = useState('')
+    
+    //Boa prática: Sempre que possivel, evite atualizar estados
+    // demtro do useEffect, isso pode gerar loop de renderização infinitos.
+    //Nesse caso, prefira inicializar diretamente o estado com os
+    // dados do banco de dados, como foi feito na linha:
+    // const [listaDeValores, setListaDeValores] = useState(getItems())
+    useEffect(() => {
+        setListaDeValores(getItems())
+    }, [])
+   
 
     function addItem() {
         // Para adicionar um item à lista, criamos uma nova lista que contém todos os itens anteriores mais o novo item.
         // Usamos o operador spread (...) para copiar os itens anteriores da lista e adicionamos o novo texto no final.
-        setListaDeValores([...listaDeValores, texto])
+       
+       //Por conveniência criamos uma nova lista que será
+       // usada tanto para atualizar o banco de dados quanto
+       // para atualizar o estado.
+        const novaLista = [...listaDeValores, texto];
+
+        //Atualiza o banco de dados com a nova lista de valores
+        saveItems(novaLista);
+
+        //Atualiza o estado com a nova lista de valores
+        setListaDeValores(novaLista);
 
         // Depois de adicionar o item à lista, limpamos o campo de texto para que o usuário possa digitar um novo valor.
         setTexto('')
@@ -63,6 +85,17 @@ export default function Data() {
                                     <tr key={indice}>
                                         <td>{indice}</td>
                                         <td>{valor}</td>
+                                        <td><button onClick={() => {
+                                            //Para remover um item, chamamos a função removeItem.
+                                            // passando o indice do item a ser removido.
+                                            removeItems(indice);
+
+                                            //Depois de remover o item do banco de dados,
+                                            // atualizamos o estado para refletir a nova
+                                            // lista de valores
+                                            setListaDeValores(getItems())
+                                        }}>remover</button>
+                                        </td>
                                     </tr>
                                 )
                             )

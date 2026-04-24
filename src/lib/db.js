@@ -9,6 +9,7 @@
 // como 'pwiii-users', 'pwiii-orders', etc.  
 const STORAGE_KEY = 'pwiii-items';
 
+
 export function getItems() {
 
     try {
@@ -35,5 +36,14 @@ export function saveItems(items) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (error) {
         console.error('Erro ao salvar itens no localStorage:', error);
+    }
+}
+
+export function removeItems(id) {
+    try{
+        const items = getItems().filter(item => item.id !== id);
+        saveItems(items);
+    } catch (error) {
+        console.error('Erro ao remover item do localStorage:', error);
     }
 }

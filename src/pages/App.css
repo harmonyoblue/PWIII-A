@@ -3,6 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-weight: 700;
+  background-image: url("/public/C.C._released_from_capsule.jpg");
+  width: 100%;  /* 100% of the viewport width */
+  height: 100vw; /* 100% of the viewport height */
+  margin: 0;
+
 }
 
 .logo {
